@@ -1,0 +1,587 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header Styles */
+header {
+    background-color: #4a90e2;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #e3f2fd;
+}
+
+/* Main Content Styles */
+main {
+    padding: 2rem 0;
+    min-height: calc(100vh - 300px);
+}
+
+/* Hero Section */
+.hero {
+    background-color: #e3f2fd;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #34495e;
+}
+
+/* Search Container */
+.search-container {
+    margin-bottom: 2rem;
+}
+
+.search-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+}
+
+.search-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #3a7bc8;
+}
+
+.search-results {
+    margin-bottom: 1rem;
+    font-style: italic;
+    color: #666;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #3a7bc8;
+}
+
+.btn-primary {
+    background-color: #4a90e2;
+}
+
+.btn-primary:hover {
+    background-color: #3a7bc8;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Form Styles */
+.form-container, .auth-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-group .help-text {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.3rem;
+}
+
+.form-group .errorlist {
+    color: #e74c3c;
+    list-style: none;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+/* Card Styles */
+.clinic-grid,
+.pet-grid,
+.appointment-grid,
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.clinic-card,
+.pet-card,
+.appointment-card,
+.status-card,
+.service-card,
+.review-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.clinic-card:hover,
+.pet-card:hover,
+.appointment-card:hover,
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.clinic-card h3,
+.pet-card h3,
+.appointment-card h3,
+.service-card h3 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+/* Rating Styles */
+.clinic-rating {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.stars {
+    color: #f39c12;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.rating-text {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.review-rating {
+    margin: 0.5rem 0;
+}
+
+.star {
+    color: #ddd;
+    font-size: 1.2rem;
+}
+
+.star.filled {
+    color: #f39c12;
+}
+
+/* Service Styles */
+.services-preview {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.services-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.service-card {
+    text-align: center;
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #4a90e2;
+}
+
+.services-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.service-tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: #e3f2fd;
+    color: #4a90e2;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.service-tag:hover {
+    background-color: #bbdefb;
+}
+
+/* Clinic Detail Styles */
+.clinic-detail {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.clinic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.clinic-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.clinic-description,
+.clinic-services {
+    margin-bottom: 1.5rem;
+}
+
+.clinic-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Review Styles */
+.clinic-reviews {
+    margin-top: 2rem;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.review-card {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.review-user {
+    font-weight: 500;
+}
+
+.review-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.no-reviews {
+    color: #666;
+    font-style: italic;
+}
+
+/* Back Link */
+.back-link {
+    margin-top: 2rem;
+}
+
+.back-link a {
+    color: #4a90e2;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background-color: #f39c12;
+    color: white;
+}
+
+.status-badge.confirmed {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.status-badge.completed {
+    background-color: #3498db;
+    color: white;
+}
+
+.status-badge.cancelled {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Header with Button */
+.header-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Messages */
+.messages {
+    margin-bottom: 1.5rem;
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .clinic-grid,
+    .pet-grid,
+    .appointment-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-with-button {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-with-button .btn {
+        margin-top: 1rem;
+    }
+    
+    .clinic-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .clinic-rating {
+        margin-top: 0.5rem;
+    }
+    
+    .clinic-actions {
+        flex-direction: column;
+    }
+    
+    .clinic-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}

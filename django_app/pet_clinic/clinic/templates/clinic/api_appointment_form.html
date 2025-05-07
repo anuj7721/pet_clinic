@@ -1,0 +1,39 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Book an Appointment (API)</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_pet">Pet:</label>
+            {{ form.pet }}
+            {{ form.pet.errors }}
+            {% if not form.pet.field.queryset %}
+                <p class="help-text">You need to <a href="{% url 'add_pet' %}">add a pet</a> first.</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="id_clinic">Clinic:</label>
+            {{ form.clinic }}
+            {{ form.clinic.errors }}
+        </div>
+        <div class="form-group">
+            <label for="id_date">Date:</label>
+            {{ form.date }}
+            {{ form.date.errors }}
+        </div>
+        <div class="form-group">
+            <label for="id_time">Time:</label>
+            {{ form.time }}
+            {{ form.time.errors }}
+        </div>
+        <div class="form-group">
+            <label for="id_reason">Reason for Visit:</label>
+            {{ form.reason }}
+            {{ form.reason.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary">Book Appointment</button>
+    </form>
+</div>
+{% endblock %}

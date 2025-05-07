@@ -1,0 +1,69 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Find the Perfect Clinic for Your Pet</h1>
+        <p>Book appointments with top veterinary clinics in your area</p>
+        
+        <div class="search-container">
+            <form method="get" action="{% url 'home' %}" class="search-form">
+                {{ search_form.search_query }}
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+        </div>
+        
+        {% if user.is_authenticated %}
+            <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book an Appointment</a>
+        {% else %}
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up to Book</a>
+        {% endif %}
+    </div>
+</section>
+
+<section class="clinics">
+    <h2>Available Clinics</h2>
+    {% if search_form.search_query.value %}
+        <p class="search-results">Showing results for: "{{ search_form.search_query.value }}"</p>
+    {% endif %}
+    
+    <div class="clinic-grid">
+        {% for clinic in clinics %}
+            <div class="clinic-card">
+                <h3>{{ clinic.name }}</h3>
+                <p><strong>Address:</strong> {{ clinic.address }}</p>
+                <p><strong>Phone:</strong> {{ clinic.phone }}</p>
+                <p>{{ clinic.description|truncatewords:20 }}</p>
+                <div class="clinic-rating">
+                    <span class="stars">
+                        {% with rating=clinic.average_rating %}
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= rating %}
+                                    ★
+                                {% else %}
+                                    ☆
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    </span>
+                    <span class="rating-text">{{ clinic.average_rating|floatformat:1 }}/5</span>
+                </div>
+                <div class="clinic-actions">
+                    <a href="{% url 'clinic_detail' clinic.id %}" class="btn btn-secondary">View Details</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'book_appointment' %}" class="btn">Book Appointment</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No clinics found matching your search criteria.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="services-preview">
+    <h2>Our Services</h2>
+    <p>We offer a wide range of veterinary services for your pets</p>
+    <a href="{% url 'services_list' %}" class="btn btn-secondary">View All Services</a>
+</section>
+{% endblock %}

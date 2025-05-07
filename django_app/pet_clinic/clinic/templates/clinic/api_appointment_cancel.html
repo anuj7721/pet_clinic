@@ -1,0 +1,22 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Cancel Appointment</h2>
+    <div class="confirmation-message">
+        <p>Are you sure you want to cancel this appointment?</p>
+        <div class="appointment-details">
+            <p><strong>Pet:</strong> {{ pet.name }}</p>
+            <p><strong>Date:</strong> {{ appointment.date }}</p>
+            <p><strong>Time:</strong> {{ appointment.time }}</p>
+        </div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Yes, Cancel Appointment</button>
+            <a href="{% url 'api_appointment_detail' appointment.id %}" class="btn">No, Go Back</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

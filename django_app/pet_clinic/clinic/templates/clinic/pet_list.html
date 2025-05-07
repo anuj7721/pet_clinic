@@ -1,0 +1,23 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<div class="pet-list">
+    <div class="header-with-button">
+        <h2>My Pets</h2>
+        <a href="{% url 'add_pet' %}" class="btn">Add New Pet</a>
+    </div>
+    
+    <div class="pet-grid">
+        {% for pet in pets %}
+            <div class="pet-card">
+                <h3>{{ pet.name }}</h3>
+                <p><strong>Species:</strong> {{ pet.get_species_display }}</p>
+                <p><strong>Breed:</strong> {{ pet.breed|default:"Not specified" }}</p>
+                <p><strong>Age:</strong> {{ pet.age }} years</p>
+            </div>
+        {% empty %}
+            <p>You haven't added any pets yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

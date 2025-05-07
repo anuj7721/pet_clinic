@@ -1,0 +1,100 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<section class="clinic-detail">
+    <div class="clinic-header">
+        <h1>{{ clinic.name }}</h1>
+        <div class="clinic-rating">
+            <span class="stars">
+                {% with rating=clinic.average_rating %}
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= rating %}
+                            ★
+                        {% else %}
+                            ☆
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+            </span>
+            <span class="rating-text">{{ clinic.average_rating|floatformat:1 }}/5</span>
+        </div>
+    </div>
+    
+    <div class="clinic-info">
+        <div class="info-item">
+            <strong>Address:</strong>
+            <p>{{ clinic.address }}</p>
+        </div>
+        <div class="info-item">
+            <strong>Phone:</strong>
+            <p>{{ clinic.phone }}</p>
+        </div>
+        <div class="info-item">
+            <strong>Email:</strong>
+            <p>{{ clinic.email }}</p>
+        </div>
+    </div>
+    
+    <div class="clinic-description">
+        <h2>About This Clinic</h2>
+        <p>{{ clinic.description }}</p>
+    </div>
+    
+    <div class="clinic-services">
+        <h2>Services Offered</h2>
+        <div class="services-tags">
+            {% for service in clinic.services.all %}
+                <a href="{% url 'service_detail' service.id %}" class="service-tag">{{ service.name }}</a>
+            {% empty %}
+                <p>No services listed for this clinic.</p>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="clinic-actions">
+        {% if user.is_authenticated %}
+            <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book Appointment</a>
+            {% if user_review %}
+                <a href="{% url 'add_review' clinic.id %}" class="btn btn-secondary">Edit Your Review</a>
+            {% else %}
+                <a href="{% url 'add_review' clinic.id %}" class="btn btn-secondary">Write a Review</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login to Book or Review</a>
+        {% endif %}
+    </div>
+</section>
+
+<section class="clinic-reviews">
+    <h2>Reviews</h2>
+    
+    <div class="reviews-list">
+        {% for review in reviews %}
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-user">{{ review.user.get_full_name|default:review.user.username }}</div>
+                    <div class="review-date">{{ review.created_at|date:"F j, Y" }}</div>
+                </div>
+                <div class="review-rating">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= review.rating %}
+                            <span class="star filled">★</span>
+                        {% else %}
+                            <span class="star">☆</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="review-comment">
+                    {{ review.comment }}
+                </div>
+            </div>
+        {% empty %}
+            <p class="no-reviews">No reviews yet. Be the first to review this clinic!</p>
+        {% endfor %}
+    </div>
+</section>
+
+<div class="back-link">
+    <a href="{% url 'home' %}">← Back to Clinics</a>
+</div>
+{% endblock %}

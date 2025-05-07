@@ -1,0 +1,49 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<section class="service-detail-header">
+    <h1>{{ service.name }}</h1>
+    <p>{{ service.description }}</p>
+</section>
+
+<section class="service-clinics">
+    <h2>Clinics Offering This Service</h2>
+    
+    <div class="clinic-grid">
+        {% for clinic in clinics %}
+            <div class="clinic-card">
+                <h3>{{ clinic.name }}</h3>
+                <p><strong>Address:</strong> {{ clinic.address }}</p>
+                <p><strong>Phone:</strong> {{ clinic.phone }}</p>
+                <p>{{ clinic.description|truncatewords:20 }}</p>
+                <div class="clinic-rating">
+                    <span class="stars">
+                        {% with rating=clinic.average_rating %}
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= rating %}
+                                    ★
+                                {% else %}
+                                    ☆
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    </span>
+                    <span class="rating-text">{{ clinic.average_rating|floatformat:1 }}/5</span>
+                </div>
+                <div class="clinic-actions">
+                    <a href="{% url 'clinic_detail' clinic.id %}" class="btn btn-secondary">View Details</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'book_appointment' %}" class="btn">Book Appointment</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No clinics currently offer this service.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<div class="back-link">
+    <a href="{% url 'services_list' %}">← Back to Services</a>
+</div>
+{% endblock %}

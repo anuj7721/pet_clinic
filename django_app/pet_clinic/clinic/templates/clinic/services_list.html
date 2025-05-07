@@ -1,0 +1,29 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<section class="services-header">
+    <h1>Our Services</h1>
+    <p>We offer a comprehensive range of veterinary services to keep your pets healthy and happy</p>
+</section>
+
+<section class="services-list">
+    <div class="services-grid">
+        {% for service in services %}
+            <div class="service-card">
+                <div class="service-icon">
+                    {% if service.icon %}
+                        <i class="icon-{{ service.icon }}"></i>
+                    {% else %}
+                        <i class="icon-paw"></i>
+                    {% endif %}
+                </div>
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description|truncatewords:25 }}</p>
+                <a href="{% url 'service_detail' service.id %}" class="btn">View Clinics</a>
+            </div>
+        {% empty %}
+            <p>No services available at the moment.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
